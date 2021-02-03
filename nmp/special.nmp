@@ -40,7 +40,7 @@ op all_special =
 // special instruction
 // several values are currently ignored -> they are reserved for finer-grain fences in future extensions of RISC-V ISA
 op fence(predecessor: card(4), successor: card(4), ignore1: card(4), ignore2: reg_t, fencetype: card(3), ignore3: reg_t)
-	syntax = if fencetype == 1 then "fence.i" else format("fence %4b, %4b", predecessor, successor) endif
+	syntax = if fencetype == 1 then "fence.i" else format("fence %x, %x", predecessor, successor) endif
 	image  = format("%4b %4b %4b %5b %3b %5b 0001111", ignore1, predecessor, successor, ignore2, fencetype, ignore3)
 	action = {
 		SyncOperation(0);
